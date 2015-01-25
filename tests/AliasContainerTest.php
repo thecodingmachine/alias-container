@@ -1,6 +1,7 @@
 <?php
 namespace Mouf\Picotainer;
 
+use Mouf\AliasContainer\AliasContainer;
 /**
  * Test class for AliasContainer
  *
@@ -14,8 +15,12 @@ class AliasContainerTest extends \PHPUnit_Framework_TestCase
         $container = new Picotainer([
                 "instance" => function () { return "value"; },
         ]);
+        $aliasContainer = new AliasContainer($container, [
+        	"alias" => "instance",
+        ]);
+        
 
-        $this->assertEquals('value', $container->get('instance'));
+        $this->assertEquals('value', $aliasContainer->get('alias'));
     }
 
     /**
@@ -24,34 +29,25 @@ class AliasContainerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetException()
     {
-        $container = new Picotainer([]);
-
-        $container->get('nonexistant');
-    }
-
-    public function testDelegateContainer()
-    {
         $container = new Picotainer([
                 "instance" => function () { return "value"; },
         ]);
+    	$aliasContainer = new AliasContainer($container, []);
 
-        $container2 = new Picotainer([
-                "instance2" => function ($container) { return $container->get('instance'); },
-        ], $container);
-
-        $this->assertEquals('value', $container2->get('instance2'));
+        $aliasContainer->get('nonexistant');
     }
 
     public function testOneInstanceOnly()
     {
         $container = new Picotainer([
-                "instance" => function () { return new \stdClass(); },
+                "instance" => function () { return "value"; },
         ]);
+        $aliasContainer = new AliasContainer($container, [
+        	"alias" => "instance",
+        ]);
+        
 
-        $instance1 = $container->get('instance');
-        $instance2 = $container->get('instance');
-
-        $this->assertEquals($instance1, $instance2);
+        $this->assertEquals($container->get('instance'), $aliasContainer->get('alias'));
     }
 
     public function testHas()
@@ -59,8 +55,11 @@ class AliasContainerTest extends \PHPUnit_Framework_TestCase
         $container = new Picotainer([
                 "instance" => function () { return "value"; },
         ]);
-
-        $this->assertTrue($container->has('instance'));
-        $this->assertFalse($container->has('instance2'));
+        $aliasContainer = new AliasContainer($container, [
+        	"alias" => "instance",
+        ]);
+        
+        $this->assertTrue($container->has('alias'));
+        $this->assertFalse($container->has('alias2'));
     }
 }

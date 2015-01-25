@@ -10,7 +10,7 @@ use Interop\Container\ContainerInterface;
  * to fetch the entries from. The "get" functionality will follow the declared aliases.
  * If no alias is defined an exception is thrown.
  */
-class AliasContainer implements ContainerInterface, \ArrayAccess
+class AliasContainer implements ContainerInterface
 {
     /**
      * @var array|\ArrayAccess The aliases
@@ -44,9 +44,9 @@ class AliasContainer implements ContainerInterface, \ArrayAccess
     {
         if (isset($this->aliases[$id])) {
             try {
-                return $this->rootContainer->get(aliases[$id]);
+                return $this->rootContainer->get($this->aliases[$id]);
             } catch (\Exception $prev) {
-                throw ContainerException::fromPrevious($id, $prev);
+                throw new AliasContainerException("An error occured while fetching entry '".$id."' (alias of '".$this->aliases[$id]."'", 0, $prev);
             }
         } else {
             throw new AliasContainerNotFoundException("No alias found for identifier '".$id."'");
@@ -58,23 +58,13 @@ class AliasContainer implements ContainerInterface, \ArrayAccess
         return isset($this->aliases[$identifier]);
     }
 
-    public function offsetExists($offset)
-    {
-        return $this->has($idenrifier);
-    }
-
-    public function offsetGet($offset)
-    {
-        return $this->get($offset);
-    }
-
-    public function offsetSet($offset, $value)
-    {
-        $this->aliases[$offset] = $value;
-    }
-
-    public function offsetUnset($offset)
-    {
-        unset($this->aliases[$offset]);
-    }
+    /**
+     * Sets a new alias.
+     * 
+     * @param string $identifier
+     * @param string $alias
+     */
+	public function set($identifier, $alias) {
+		$this->aliases[$identifier] = $alias;
+	}
 }
