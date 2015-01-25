@@ -25,7 +25,7 @@ class AliasContainerTest extends \PHPUnit_Framework_TestCase
 
     /**
      *
-     * @expectedException Mouf\Picotainer\PicotainerNotFoundException
+     * @expectedException Mouf\AliasContainer\AliasContainerNotFoundException
      */
     public function testGetException()
     {
@@ -59,7 +59,7 @@ class AliasContainerTest extends \PHPUnit_Framework_TestCase
         	"alias" => "instance",
         ]);
         
-        $this->assertTrue($container->has('alias'));
-        $this->assertFalse($container->has('alias2'));
+        $this->assertTrue($aliasContainer->has('alias'));
+        $this->assertFalse($aliasContainer->has('alias2'));
     }
 }
