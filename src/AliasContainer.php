@@ -5,7 +5,7 @@ use Interop\Container\ContainerInterface;
 
 /**
  * The Alias Container is a simple container that enables the creation of aliases for an existing container.
-*  It follows the `ContainerInterface` and ArrayAccess interfaces.
+ *  It follows the `ContainerInterface` and ArrayAccess interfaces.
  * The container can be seeded with an array or array-like object containing the aliases, and a container
  * to fetch the entries from. The "get" functionality will follow the declared aliases.
  * If no alias is defined an exception is thrown.
@@ -23,8 +23,8 @@ class AliasContainer implements ContainerInterface
     protected $rootContainer;
 
     /**
-     * @param ContainerInterface $rootContainer The container that will be used for entries lookups.
-     * @param array|\ArrayAccess|\Traversable $aliases Data for the container
+     * @param ContainerInterface              $rootContainer The container that will be used for entries lookups.
+     * @param array|\ArrayAccess|\Traversable $aliases       Data for the container
      *
      * @throws \InvalidArgumentException if the provided data is not an array or array-like object
      */
@@ -60,20 +60,22 @@ class AliasContainer implements ContainerInterface
 
     /**
      * Sets a new alias.
-     * 
+     *
      * @param string $identifier
      * @param string $alias
      */
-	public function set($identifier, $alias) {
-		$this->aliases[$identifier] = $alias;
-	}
-	
-	/**
-	 * Unsets an alias
-	 *  
-	 * @param string $identifier
-	 */
-	public function remove($identifier) {
-		unset($this->aliases[$identifier]);
-	}
+    public function set($identifier, $alias)
+    {
+        $this->aliases[$identifier] = $alias;
+    }
+
+    /**
+     * Unsets an alias
+     *
+     * @param string $identifier
+     */
+    public function remove($identifier)
+    {
+        unset($this->aliases[$identifier]);
+    }
 }

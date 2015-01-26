@@ -16,9 +16,8 @@ class AliasContainerTest extends \PHPUnit_Framework_TestCase
                 "instance" => function () { return "value"; },
         ]);
         $aliasContainer = new AliasContainer($container, [
-        	"alias" => "instance",
+            "alias" => "instance",
         ]);
-        
 
         $this->assertEquals('value', $aliasContainer->get('alias'));
     }
@@ -32,7 +31,7 @@ class AliasContainerTest extends \PHPUnit_Framework_TestCase
         $container = new Picotainer([
                 "instance" => function () { return "value"; },
         ]);
-    	$aliasContainer = new AliasContainer($container, []);
+        $aliasContainer = new AliasContainer($container, []);
 
         $aliasContainer->get('nonexistant');
     }
@@ -43,9 +42,8 @@ class AliasContainerTest extends \PHPUnit_Framework_TestCase
                 "instance" => function () { return "value"; },
         ]);
         $aliasContainer = new AliasContainer($container, [
-        	"alias" => "instance",
+            "alias" => "instance",
         ]);
-        
 
         $this->assertEquals($container->get('instance'), $aliasContainer->get('alias'));
     }
@@ -56,9 +54,9 @@ class AliasContainerTest extends \PHPUnit_Framework_TestCase
                 "instance" => function () { return "value"; },
         ]);
         $aliasContainer = new AliasContainer($container, [
-        	"alias" => "instance",
+            "alias" => "instance",
         ]);
-        
+
         $this->assertTrue($aliasContainer->has('alias'));
         $this->assertFalse($aliasContainer->has('alias2'));
     }
