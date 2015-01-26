@@ -4,8 +4,7 @@ Alias-Container
 [![Latest Unstable Version](https://poser.pugx.org/mouf/alias-container/v/unstable.svg)](https://packagist.org/packages/mouf/alias-container)
 [![License](https://poser.pugx.org/mouf/alias-container/license.svg)](https://packagist.org/packages/mouf/alias-container)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thecodingmachine/alias-container/badges/quality-score.png?b=1.0)](https://scrutinizer-ci.com/g/thecodingmachine/alias-container/?branch=1.0)
-
-TODO => [![SensioLabsInsight](https://insight.sensiolabs.com/projects/3ac43eac-dcec-496a-9e0f-5fe82f8b3824/mini.png)](https://insight.sensiolabs.com/projects/3ac43eac-dcec-496a-9e0f-5fe82f8b3824)
+<!-- [![SensioLabsInsight](https://insight.sensiolabs.com/projects/3ac43eac-dcec-496a-9e0f-5fe82f8b3824/mini.png)](https://insight.sensiolabs.com/projects/3ac43eac-dcec-496a-9e0f-5fe82f8b3824) -->
 [![Build Status](https://travis-ci.org/thecodingmachine/alias-container.svg?branch=1.0)](https://travis-ci.org/thecodingmachine/alias-container)
 [![Coverage Status](https://coveralls.io/repos/thecodingmachine/alias-container/badge.svg?branch=1.0)](https://coveralls.io/r/thecodingmachine/alias-container?branch=1.0)
 
@@ -59,7 +58,26 @@ Fetching entries from the container is as simple as calling the `get` method:
 $myInstance = $aliasContainer->get('myAlias');
 ```
 
-TODO: set, unset, iterate.
+Adding aliases to the container
+-------------------------------
+
+You can add new aliases using the `set` method.
+
+```php
+$aliasContainer->set('newAlias', 'myInstance');
+```
+
+<div class="alert alert-info">Note that it is more efficient to initialize aliases in the container
+than calling recursively the <code>set</code> method.</div>
+
+Removing aliases from the container
+-----------------------------------
+
+You can add new aliases using the `remove` method.
+
+```php
+$aliasContainer->remove('myAlias');
+```
 
 Why the need for this package?
 ------------------------------

@@ -67,4 +67,13 @@ class AliasContainer implements ContainerInterface
 	public function set($identifier, $alias) {
 		$this->aliases[$identifier] = $alias;
 	}
+	
+	/**
+	 * Unsets an alias
+	 *  
+	 * @param string $identifier
+	 */
+	public function remove($identifier) {
+		unset($this->aliases[$identifier]);
+	}
 }
