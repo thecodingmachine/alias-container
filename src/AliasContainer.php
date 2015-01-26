@@ -46,7 +46,7 @@ class AliasContainer implements ContainerInterface
             try {
                 return $this->rootContainer->get($this->aliases[$id]);
             } catch (\Exception $prev) {
-                throw new AliasContainerException("An error occured while fetching entry '".$id."' (alias of '".$this->aliases[$id]."'", 0, $prev);
+                throw new AliasContainerException("An error occured while fetching entry '".$id."' (alias of '".$this->aliases[$id]."')", 0, $prev);
             }
         } else {
             throw new AliasContainerNotFoundException("No alias found for identifier '".$id."'");
