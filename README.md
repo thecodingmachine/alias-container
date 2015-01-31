@@ -3,8 +3,7 @@ Alias-Container
 [![Latest Stable Version](https://poser.pugx.org/mouf/alias-container/v/stable.svg)](https://packagist.org/packages/mouf/alias-container)
 [![Latest Unstable Version](https://poser.pugx.org/mouf/alias-container/v/unstable.svg)](https://packagist.org/packages/mouf/alias-container)
 [![License](https://poser.pugx.org/mouf/alias-container/license.svg)](https://packagist.org/packages/mouf/alias-container)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thecodingmachine/alias-container/badges/quality-score.png?b=1.0)](https://scrutinizer-ci.com/g/thecodingmachine/alias-container/?branch=1.0)
-<!-- [![SensioLabsInsight](https://insight.sensiolabs.com/projects/3ac43eac-dcec-496a-9e0f-5fe82f8b3824/mini.png)](https://insight.sensiolabs.com/projects/3ac43eac-dcec-496a-9e0f-5fe82f8b3824) -->
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thecodingmachine/alias-container/badges/quality-score.png?b=1.0)](https://scrutinizer-ci.com/g/thecodingmachine/alias-container/?branch=1.0) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/04f9f269-db42-4a3b-9cf9-1fd41aac2e8a/mini.png)](https://insight.sensiolabs.com/projects/04f9f269-db42-4a3b-9cf9-1fd41aac2e8a)
 [![Build Status](https://travis-ci.org/thecodingmachine/alias-container.svg?branch=1.0)](https://travis-ci.org/thecodingmachine/alias-container)
 [![Coverage Status](https://coveralls.io/repos/thecodingmachine/alias-container/badge.svg?branch=1.0)](https://coveralls.io/r/thecodingmachine/alias-container?branch=1.0)
 
