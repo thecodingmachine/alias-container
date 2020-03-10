@@ -8,11 +8,10 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         syntaxCheck="false"
          bootstrap="tests/bootstrap.php"
 >
     <testsuites>
-        <testsuite name="Picontainer Test Suite">
+        <testsuite name="AliasContainer Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
