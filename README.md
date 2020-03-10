@@ -8,7 +8,7 @@ Alias-Container
 [![Coverage Status](https://coveralls.io/repos/thecodingmachine/alias-container/badge.svg?branch=1.0)](https://coveralls.io/r/thecodingmachine/alias-container?branch=1.0)
 
 This package contains a really minimalist dependency injection container that can be used to **create aliases** of instances
-in existing containers. Alias-container is compatible with [container-interop](https://github.com/container-interop/container-interop)
+in existing containers. Alias-container is compatible with [PSR-11](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-11-container.md)
 and is meant to be used in conjunction with other containers. By itself, Alias-container does not store any entry. It can only be used
 to **create aliases of instances stored in other containers**.
 
@@ -20,7 +20,7 @@ Installation
 Before using AliasContainer in your project, add it to your `composer.json` file:
 
 ```
-$ ./composer.phar require mouf/alias-container ~1.0
+$ ./composer.phar require mouf/alias-container
 ```
 
 
@@ -30,12 +30,12 @@ Defining aliases in the container
 Creating an alias container is a matter of creating an `AliasContainer` instance.
 The `AliasContainer` class takes 2 parameters:
 
-- a [delegate-lookup container](https://github.com/container-interop/container-interop/blob/master/docs/Delegate-lookup.md) (e.g. the container we will look aliases into)
+- a delegate-lookup container (e.g. the container we will look aliases into)
 - the list of aliases, as an **associative array of strings**
 
 ```php
 use Mouf\AliasContainer;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 $aliasContainer = new AliasContainer($rootContainer, [
 	"myAlias"=>"myInstance",
@@ -55,6 +55,12 @@ Fetching entries from the container is as simple as calling the `get` method:
 
 ```php
 $myInstance = $aliasContainer->get('myAlias');
+```
+Requesting an entry, whose alias wasn't specified will throw an exception.
+
+```php
+// Throws exception
+$myInstance = $aliasContainer->get('myInstance');
 ```
 
 Adding aliases to the container
@@ -77,10 +83,3 @@ You can add new aliases using the `remove` method.
 ```php
 $aliasContainer->remove('myAlias');
 ```
-
-Why the need for this package?
-------------------------------
-
-This package is part of a long-term effort to bring [interoperability between DI containers](https://github.com/container-interop/container-interop). The ultimate goal is to
-make sure that multiple containers can communicate together by sharing entries (one container might use an entry from another
-container, etc...)
