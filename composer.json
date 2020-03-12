@@ -1,5 +1,6 @@
 {
 	"name" : "mouf/alias-container",
+	"type": "library",
 	"description" : "This package contains a really minimalist dependency injection container that can be used to create aliases of instances in existing containers.",
 	"authors" : [{
 			"name" : "David Négrier",
@@ -10,7 +11,9 @@
 	"keywords" : [
 		"dependency injection",
 		"DI",
-		"container-interop"
+		"PSR-11",
+		"decorator",
+		"alias"
 	],
 	"homepage" : "http://mouf-php.com",
 	"license" : "MIT",
@@ -18,8 +21,7 @@
 		"psr/container" : "^1.0"
 	},
 	"require-dev" : {
-		"phpunit/phpunit" : "^9.0",
-		"php-coveralls/php-coveralls": "^2.2"
+		"phpunit/phpunit": "^9.0"
 	},
 	"provide": {
 		"psr/container-implementation": "1.0.0"
@@ -33,5 +35,11 @@
 		"psr-4" : {
 			"Mouf\\AliasContainer\\" : "tests/"
 		}
+	},
+	"scripts": {
+		"test": "phpunit"
+	},
+	"config": {
+		"sort-packages": true
 	}
 }

@@ -1,7 +1,10 @@
+build/
 vendor/
 .project
 .settings
 composer.phar
 composer.lock
 .buildpath
+phpunit.xml
+.phpunit.result.cache
 
