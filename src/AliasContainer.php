@@ -1,7 +1,7 @@
 <?php
 namespace Mouf\AliasContainer;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * The Alias Container is a simple container that enables the creation of aliases for an existing container.
