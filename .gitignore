@@ -5,6 +5,7 @@ vendor/
 composer.phar
 composer.lock
 .buildpath
+phpcs.xml
 phpunit.xml
 .phpunit.result.cache
 

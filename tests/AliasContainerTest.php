@@ -1,4 +1,5 @@
 <?php
+
 namespace Mouf\AliasContainer;
 
 use Mouf\AliasContainer\AliasContainer;
@@ -14,48 +15,89 @@ use Psr\Container\ContainerInterface;
  */
 class AliasContainerTest extends TestCase
 {
-
+    /**
+     * Test that get() method returns alias got from wrapped container.
+     *
+     * @return void
+     */
     public function testGet()
     {
-        /** @var ContainerInterface|MockObject */
+        /**
+         * @var ContainerInterface|MockObject
+        */
         $container = $this->createMock(ContainerInterface::class);
         $container->expects($this->once())
             ->method('get')
             ->with('instance')
             ->willReturn('value');
 
-        $aliasContainer = new AliasContainer($container, [
-            'alias' => 'instance',
-        ]);
+        $aliasContainer = new AliasContainer(
+            $container,
+            array('alias' => 'instance')
+        );
 
         $this->assertEquals('value', $aliasContainer->get('alias'));
     }
 
+    /**
+     * Test that get() throws AliasContainerNotFoundException
+     * when alias is not specified.
+     *
+     * @return void
+     */
     public function testGetException()
     {
-        /** @var ContainerInterface|MockObject */
+        /**
+         * @var ContainerInterface|MockObject
+        */
         $container = $this->createMock(ContainerInterface::class);
 
-        $aliasContainer = new AliasContainer($container, []);
+        $aliasContainer = new AliasContainer($container, array());
 
         $this->expectException(AliasContainerNotFoundException::class);
         $aliasContainer->get('nonexistant');
     }
 
+    /**
+     * Test that has() returns true when alias is set.
+     *
+     * @return void
+     */
     public function testHas()
     {
-        /** @var ContainerInterface|MockObject */
+        /**
+         * @var ContainerInterface|MockObject
+        */
         $container = $this->createMock(ContainerInterface::class);
         $container->method('has')
-            ->willReturnCallback(function ($id) {
-                return $id == 'instance';
-            });
+            ->willReturnCallback(
+                function ($id) {
+                    return $id == 'instance';
+                }
+            );
 
-        $aliasContainer = new AliasContainer($container, [
-            'alias' => 'instance',
-        ]);
+        $aliasContainer = new AliasContainer(
+            $container,
+            array('alias' => 'instance')
+        );
 
         $this->assertTrue($aliasContainer->has('alias'));
-        $this->assertFalse($aliasContainer->has('alias2'));
+    }
+
+    /**
+     * Test that has() return false when alias is not set.
+     *
+     * @return void
+     */
+    public function testHasnt()
+    {
+        /**
+         * @var ContainerInterface|MockObject
+        */
+        $container = $this->createMock(ContainerInterface::class);
+
+        $aliasContainer = new AliasContainer($container, array());
+
+        $this->assertFalse($aliasContainer->has('nonexistant'));
     }
 }
